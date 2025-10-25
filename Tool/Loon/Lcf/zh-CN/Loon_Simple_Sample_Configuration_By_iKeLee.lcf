@@ -4,8 +4,8 @@
 # 更多插件可前往 https://hub.kelee.one 安装
 
 [General]
-ip-mode = v4-only
-ipv6-vif = off
+ip-mode = dual
+ipv6-vif = auto
 dns-server = system
 sni-sniffing = true
 disable-stun = false
@@ -64,6 +64,17 @@ bypass-tun = 10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/
 
 [Rule]
 # Local Rule
+DOMAIN-SUFFIX,tanhuatv.site,日本手动策略
+DOMAIN-SUFFIX,fc2stream.tv,香港时延优选
+DOMAIN-SUFFIX,voe.sx,香港时延优选
+DOMAIN-SUFFIX,jmsuper.com,韩国手动策略
+DOMAIN-SUFFIX,nodeseek.com,香港时延优选
+DOMAIN-SUFFIX,hostloc.com,香港时延优选
+DOMAIN-SUFFIX,infuseku.xyz,香港时延优选
+DOMAIN-SUFFIX,emturbovid.com,香港时延优选
+DOMAIN-SUFFIX,supremejav.com,香港时延优选
+DOMAIN-SUFFIX,supjav.com,香港时延优选
+
 # Type:DOMAIN-SUFFIX,DOMAIN,DOMAIN-KEYWORD,USER-AGENT,URL-REGEX,IP-CIDR,IP-CIDR6,IP-ASN
 # Strategy:DIRECT,Proxy,REJECT
 # Options:no-resolve(no-resolve(only for cidr))
@@ -76,22 +87,26 @@ bypass-tun = 10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/
 FINAL, 兜底后备策略
 
 [Remote Rule]
-https://rule.kelee.one/Loon/Telegram.lsr, policy = 兜底后备策略, tag = Telegram, enabled = true
-https://kelee.one/Tool/Loon/Lsr/TikTok.lsr, policy = 新国手动策略, tag = TikTok, enabled = true
+https://rule.kelee.one/Loon/TelegramSG.lsr, policy = 新国时延优选, tag = TelegramSG, enabled = true
+https://rule.kelee.one/Loon/TelegramNL.lsr, policy = 全球手动策略, tag = TelegramNL, enabled = true
+https://rule.kelee.one/Loon/TelegramUS.lsr, policy = 美国手动策略, tag = TelegramUS, enabled = true
+https://kelee.one/Tool/Loon/Lsr/TikTok.lsr, policy = 台湾时延优选, tag = TikTok, enabled = true
 https://kelee.one/Tool/Loon/Lsr/AI.lsr, policy = 美国手动策略, tag = AI, enabled = true
 https://kelee.one/Tool/Loon/Lsr/SpeedtestInternational.lsr, policy = 全球手动策略, tag = Speedtest Intl, enabled = true
 https://kelee.one/Tool/Loon/Lsr/AppleAccount.lsr, policy = DIRECT, tag = Apple Account, enabled = true
 https://kelee.one/Tool/Loon/Lsr/AppStore.lsr, policy = DIRECT, tag = App Store, enabled = false
-https://rule.kelee.one/Loon/GitHub.lsr, policy = 兜底后备策略, tag = GitHub, enabled = true
-https://rule.kelee.one/Loon/Netflix.lsr, policy = 新国手动策略, tag = Netflix, enabled = true
-https://rule.kelee.one/Loon/YouTube.lsr, policy = 兜底后备策略, tag = Youtube, enabled = true
-https://rule.kelee.one/Loon/Disney.lsr, policy = 香港手动策略, tag = Disney, enabled = true
-https://rule.kelee.one/Loon/Twitter.lsr, policy = 兜底后备策略, tag = Twitter, enabled = true
-https://rule.kelee.one/Loon/Facebook.lsr, policy = 兜底后备策略, tag = Facebook, enabled = true
-https://rule.kelee.one/Loon/Instagram.lsr, policy = 兜底后备策略, tag = Instagram, enabled = true
-https://rule.kelee.one/Loon/Spotify.lsr, policy = 香港手动策略, tag = Spotify, enabled = true
-https://rule.kelee.one/Loon/Google.lsr, policy = 兜底后备策略, tag = Google, enabled = true
-https://rule.kelee.one/Loon/OneDrive.lsr, policy = 兜底后备策略, tag = OneDrive, enabled = true
+https://rule.kelee.one/Loon/GitHub.lsr, policy = 香港时延优选, tag = GitHub, enabled = true
+https://rule.kelee.one/Loon/Netflix.lsr, policy = 台湾时延优选, tag = Netflix, enabled = true
+https://rule.kelee.one/Loon/YouTube.lsr, policy = 香港时延优选, tag = Youtube, enabled = true
+https://rule.kelee.one/Loon/Disney.lsr, policy = 台湾时延优选, tag = Disney, enabled = true
+https://rule.kelee.one/Loon/Twitter.lsr, policy = 香港时延优选, tag = Twitter, enabled = true
+https://rule.kelee.one/Loon/Facebook.lsr, policy = 香港时延优选, tag = Facebook, enabled = true
+https://rule.kelee.one/Loon/Instagram.lsr, policy = 香港时延优选, tag = Instagram, enabled = true
+https://rule.kelee.one/Loon/Spotify.lsr, policy = 香港时延优选, tag = Spotify, enabled = true
+https://rule.kelee.one/Loon/Google.lsr, policy = 美国手动策略, tag = Google, enabled = true
+https://rule.kelee.one/Loon/OneDrive.lsr, policy = 香港时延优选, tag = OneDrive, enabled = true
+http://192.168.8.10/Loon/Emby.lsr, policy = 香港时延优选, tag = Emby, enabled = true
+http://192.168.8.10/Loon/EmbyDirect.lsr, policy = DIRECT, tag = EmbyDirect, enabled = true
 https://kelee.one/Tool/Loon/Lsr/LAN_SPLITTER.lsr, policy = DIRECT, tag = LAN, enabled = true
 https://kelee.one/Tool/Loon/Lsr/REGION_SPLITTER.lsr, policy = DIRECT, tag = CN REGION, enabled = true
 
@@ -111,6 +126,32 @@ https://kelee.one/Tool/Loon/Lpx/TestFlightRegionUnlock.lpx, policy = DIRECT, ena
 https://kelee.one/Tool/Loon/Lpx/BoxJs.lpx, policy = 兜底后备策略, enabled = true
 https://kelee.one/Tool/Loon/Lpx/Sub-Store.lpx, policy = 兜底后备策略, enabled = true
 https://kelee.one/Tool/Loon/Lpx/Script-Hub.lpx, policy = 兜底后备策略, enabled = true
+https://kelee.one/Tool/Loon/Lpx/AppleWeatherEnhancer.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/Weixin_Official_Accounts_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/WexinMiniPrograms_Remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/Cainiao_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/FleaMarket_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/Himalaya_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/QtingFM_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/NeteaseCloudMusic_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/QQMusic_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/Bilibili_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/RedPaper_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/smzdm_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/NeteaseNews_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/Zhihu_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/Tieba_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/Weibo_intl_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/Amap_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/BaiduMap_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/BaiduNetDisk_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/AliYunDrive_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/BaiduSearchWebpage_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/QiXinBao_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/KuaiKanComic_remove_ads.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/JD_Price.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/YouTubeSubtitlesTranslation.lpx, enabled = true
+https://kelee.one/Tool/Loon/Lpx/WPS_checkin.lpx, enabled = true
 
 [Mitm]
 hostname = 
